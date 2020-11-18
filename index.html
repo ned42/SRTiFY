@@ -248,12 +248,18 @@ function ini() {
   $("#source").val('');
   //console.log=function(){};
   if(document.cookie.search('info=')<0){
-    fetch('https://ipapi.co/json/')
-      .then(function(response) {
-      return response.json();
-      })
-      .then(function(data) {
-      document.cookie = "info="+JSON.stringify(data);
+    $.ajax({
+      url: "https://ipapi.co/json/",
+      type: "GET",
+      crossDomain: true,
+      success: function (resp) {
+          console.log(JSON.stringify(resp));
+          document.cookie = "info="+JSON.stringify(resp);
+
+      },
+      error: function (xhr, status) {
+          console.log("errorinfo");
+      }
     });
   };
 };
