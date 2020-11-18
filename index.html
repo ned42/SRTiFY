@@ -288,7 +288,7 @@ function loadSrt() {
       // file reading finished successfully
       reader.addEventListener('load', function(e) {
         $("#source").val(e.target.result); 
-        console.log(file_name+' has been loaded ,,do trans auto' )
+        console.log($("#source").val().length+file_name+' has been loaded ,,do trans auto' )
         //do trans auto
         autoTrans();
       });
