@@ -237,7 +237,7 @@ svg:not(:root), symbol, image, marker, pattern, foreignObject {
 </div>
 <script>
 var file_name;
-ini();
+
 $( "#button" ).on('click',function() {
   console.log('bclicked');
   loadSrt()
@@ -305,7 +305,9 @@ function autoTrans() {
   var bid;
   var jwt;
   var predata;
-
+  
+  ini();
+  
   var text = $("#source").val();
   if (text.length<10) return logError('too short');
   var PF_result = PF_SRT.parse(text);
