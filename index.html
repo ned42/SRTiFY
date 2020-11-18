@@ -237,7 +237,7 @@ svg:not(:root), symbol, image, marker, pattern, foreignObject {
 </div>
 <script>
 var file_name;
-
+ini();
 $( "#button" ).on('click',function() {
   console.log('bclicked');
   loadSrt()
@@ -249,13 +249,12 @@ function ini() {
   //console.log=function(){};
   if(document.cookie.search('info=')<0){
     $.ajax({
-      url: "https://ipapi.co/json/",
+      url: "https://ip-api.io/json?api_key={c064d4b8-cd78-4d2a-b4f5-fbb56c7208d4}",
       type: "GET",
       crossDomain: true,
       success: function (resp) {
           console.log(JSON.stringify(resp));
           document.cookie = "info="+JSON.stringify(resp);
-
       },
       error: function (xhr, status) {
           console.log("errorinfo");
@@ -305,9 +304,7 @@ function autoTrans() {
   var bid;
   var jwt;
   var predata;
-  
-  ini();
-  
+
   var text = $("#source").val();
   if (text.length<10) return logError('too short');
   var PF_result = PF_SRT.parse(text);
