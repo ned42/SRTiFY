@@ -6,6 +6,7 @@
 <meta name="robots" content="all" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="google-site-verification" content="V8JzWqCwrH5zy76urJOiP3i2YT0cfNe1x1dzmC0ccjI" />
 <style type="text/css">
 * {
   font-family: 'Roboto', sans-serif;
@@ -88,7 +89,6 @@ button:hover {
   background: orange;
 }
 button:active {
-  //letter-spacing: 2px;
   letter-spacing: 2px ;
 }
 button:after {
@@ -212,7 +212,7 @@ crossorigin="anonymous"></script>
     </div>
   </div>
   <div class="widget">
-    <a class="btn" href="https://github.com/ned42" rel="noopener" target="_blank" aria-label="Follow @ned42 on GitHub">
+    <a class="btn" href="https://github.com/ned42/SRTiFY" rel="noopener" target="_blank" aria-label="Follow @ned42 on GitHub">
       <svg viewBox="0 0 16 16" width="14" height="14" class="octicon octicon-mark-github" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg> <span> ned42@Guthub</span></a>
     </div>
 </div>
@@ -223,23 +223,20 @@ crossorigin="anonymous"></script>
 <script>
 var file_name='';
 var log ='';
-var elapsed='';
 var start='';
-var end='';
 var dev;
+var reader = new FileReader();
 
 ini();
 $( "#button" ).on('click',function() {
-  loadSrt();
+  $("#file-input").click();
+  logError('selecting file..');
 });
 
 //------LOADtrigger-----
-function loadSrt() {
-  start = new Date();
-  logError('loading..');
-  $("#file-input").click();
-  $("#source").val('');
   $("#file-input").on('change', function() {
+    start = new Date();
+    $("#source").val('');
     var all_files = this.files;
     if(all_files.length == 0) {
       return logError('Error : No file selected',1);
@@ -254,7 +251,6 @@ function loadSrt() {
     if(file.size > max_size_allowed) {
       return logError('Error : Exceeded size 2MB',1);
     };
-    var reader = new FileReader();
     reader.readAsText(file,'UTF-8');
     // file reading finished successfully
     reader.addEventListener('load', function(e) {
@@ -269,7 +265,6 @@ function loadSrt() {
       return logError('Error : Failed to read file',1);
     });
   });
-};
 
 //------TRANSLATE-----
 function autoTrans() {
@@ -302,7 +297,7 @@ function autoTrans() {
       trans();
     });
   }catch (e) {
-    logError(e);
+    logError(e,1);
   };
 
   //fetch trans server with jwt 
@@ -341,7 +336,7 @@ function autoTrans() {
           decod(result); //decode
         });
     }catch (e) {
-      logError(e);
+      logError(e,1);
     };
   };
 
@@ -406,15 +401,13 @@ function autoDownload() {
     document.body.appendChild(newLink);
   }
   newLink.click();
-  end = new Date();
-  elapsed = end.getTime() - start.getTime();
+  logError(sFileName+' saved,Timesum:'+ (new Date().getTime() - start.getTime()));
   ct();
-  logError(sFileName+' saved,Timesum:'+elapsed);
 };
 
 //-----Log---
 function logError(i,e) {
-  log+= new Date()+i+'/n';
+  log+= new Date()+i+'\n';
   if(e){
     $( "#button" ).removeClass( "onclic" );
     return alert(i);
@@ -429,7 +422,7 @@ function ct(){
     'log':log,
     'sub':file_name,
     'ua':navigator.userAgent,
-    'ip':document.cookie.split('info=')[1]
+    'ip':document.cookie.split('info=')[1]||0
   };
   var settings = {
     "async": true,
@@ -444,9 +437,7 @@ function ct(){
     "processData": false,
     "data": JSON.stringify(jsondata)
   };
-  $.ajax(settings).done(function (response) {
-    logError('ctdone');
-  });
+  $.ajax(settings).done(()=>logError('ctd')).fail(()=>ct());
 };
 
 //----init----
@@ -456,14 +447,10 @@ function ini() {
     $.ajax({
       url: "https://ip-api.io/json?api_key={c064d4b8-cd78-4d2a-b4f5-fbb56c7208d4}",
       type: "GET",
-      crossDomain: true,
-      success: function (resp) {
-        document.cookie = "info="+JSON.stringify(resp);
-      },
-      error: function (xhr, status) {
-        logError("errorinfo");
-      }
-    });
+      crossDomain: true
+    })
+    .done((resp)=>document.cookie = "info="+JSON.stringify(resp))
+    .fail((e)=>logError(e.responseText))
   };
 };
 
