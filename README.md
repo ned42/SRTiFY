@@ -1,5 +1,7 @@
 # SRTiFY在线字幕翻译  
-[![HitCount](http://hits.dwyl.com/ned42/SRTiFY.svg)](http://hits.dwyl.com/ned42/SRTiFY)
+
+![Hits](https://hitcounter.pythonanywhere.com/count/tag.svg?url=https%3A%2F%2Fgithub.com%2Fned42%2FSRTiFY)
+
 - 翻译API来自 [彩云小译](https://fanyi.caiyunapp.com/#/api)
 - 语言自动检测 支持英/日/法/西/俄
 -  .srt 字幕格式 (only)
