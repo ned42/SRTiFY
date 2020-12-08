@@ -18,7 +18,6 @@ html {
 body {
   height: 95vh;
   background-color:#FABD4A;
-  margin:0px;
   text-align:center;
 }
 @media all and (min-width: 767px) {
@@ -49,7 +48,6 @@ body {
   height:90%;
   width: 90%;
   overflow: auto;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px, rgba(0, 0, 0, 0.1) 0px 1px 4px;
   border: solid 1px rgba(255,255,255,0.8);
   color: #002E40;
   background: rgba(255,255,255,0.8);
@@ -135,6 +133,7 @@ button:after {
   white-space: nowrap;
 }
 .btn {
+  border-radius: .25em;
   color: #24292e;
   background-color: #eff3f6;
   border-color: #c5c9cc;
@@ -162,9 +161,6 @@ button:after {
   background-position: -1px -1px;
   background-size: 110% 110%;
   border: 1px solid;
-}
-.btn {
-  border-radius: .25em;
 }
 @media (prefers-color-scheme: dark) {
   .btn {
