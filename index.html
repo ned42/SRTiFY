@@ -282,7 +282,9 @@ function autoTrans() {
       method: "POST",
       headers: { 
         accept: "application/json",
-        "content-type": "application/json; charset=UTF-8", 
+        "content-type": "application/json; charset=UTF-8",
+        "Origin":"https://fanyi.caiyunapp.com",
+        "Referer":"https://fanyi.caiyunapp.com/",
         "X-Authorization": "token:qgemv4jr1y38jyq6vhvi" 
       },
       body: JSON.stringify({ browser_id: bid }),
