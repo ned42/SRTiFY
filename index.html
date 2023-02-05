@@ -375,7 +375,7 @@ function autoTrans() {
     var newtextval = '';
     for (var i = 0; i < d.length; i++) {
       predata[i].text = d[i] + "\n" +predata[i].text+ "\n";
-      newtextval += predata[i].line + "\n" + predata[i].startTime + " " + "-->" + " " + predata[i].endTime + "\n" + predata[i].text + "\n";
+      newtextval += predata[i].line + "\n" + predata[i].startTime + " " + "--@TODO>" + " " + predata[i].endTime + "\n" + predata[i].text + "\n";
     };
     $("#source").val(newtextval);
     $( "#button" ).removeClass( "onclic" );
