@@ -1,495 +1,449 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<meta name="google-site-verification" content="V8JzWqCwrH5zy76urJOiP3i2YT0cfNe1x1dzmC0ccjI" />
-<meta name="robots" content="index, follow" />
-<title>🎬🎭SRTiFY 在线字幕翻译</title>
-<meta name="keywords" content="在线字幕翻译,srt字幕翻译,srt翻译,翻译字幕,多语种翻译,双语字幕">
-<meta name="description" content="在线字幕翻译，多语种自动识别，一键导出双语字幕。"/>
-<meta itemprop="description" content="在线字幕翻译，多语种自动识别，一键导出双语字幕。">
-<style type="text/css">
-* {
-  font-family: 'Roboto', sans-serif;
-}
-html {
-  height:100vh;
-  width:100%;
-}
-body {
-  height: 95vh;
-  background-color:#FABD4A;
-  text-align:center;
-}
-@media all and (min-width: 767px) {
-  #source {
-    width:50% !important;
-  }
-}
-#demo-containera {
-  height:90vh;
-  width:100%;
-  text-align: center;
-}
-#file-input {
-  display: none;
-}
-.header-item{
-  color:rgba(243,243,243,0.9);
-  text-align:center;
-  margin-top: 5vh;
-}
-.box{
-  height:80vh;
-}
-#source {
-  padding:2%;
-  text-align: left;
-  font-size: 13px;
-  height:90%;
-  width: 90%;
-  overflow: auto;
-  border: solid 1px rgba(255,255,255,0.8);
-  color: #002E40;
-  background: rgba(255,255,255,0.8);
-  border-radius: 3% 3% 0 0;
-}
-#source:focus {
-  outline: none !important;
-}
-.container {
-  position: absolute;
-  top:66%;
-  left:50%;
-  margin-left: -65px;
-  margin-top: -20px;
-  width: 130px;
-  height: 40px;
-  text-align: center;
-}
-button {
-  outline:none;
-  height: 40px;
-  text-align: center;
-  width: 130px;
-  border-radius:40px;
-  background: #fff;
-  border: 3px solid orange;
-  color:orange;
-  letter-spacing:1px;
-  text-shadow:0;
-  font-size:12px;
-  font-weight:bold;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-button:hover {
-  color:white;
-  background: orange;
-}
-button:active {
-  letter-spacing: 2px ;
-}
-button:after {
-  content:"Import";
-}
-.onclic {
-  width: 40px;
-  border-color:white;
-  background-color:unset;
-  border-width:3px;
-  font-size:0;
-  border-left-color:orange;
-  animation: rotating 2s 0.25s linear infinite;
-}
-.onclic:after {
-  content:"";
-}
-.onclic:hover {
-  color:orange;
-  background: white;
-}
-.validate {
-  font-size:13px;
-  color: white;
-  background: orange;
-}
-.validate:after {
-  content:"Done!";
-}
-@keyframes rotating {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.widget {
-  display: inline-block;
-  overflow: hidden;
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
-  font-size: 0;
-  line-height: 0;
-  white-space: nowrap;
-}
-.btn {
-  border-radius: .25em;
-  color: #24292e;
-  background-color: #eff3f6;
-  border-color: #c5c9cc;
-  border-color: rgba(27,31,35,.2);
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg'%3e%3clinearGradient id='o' x2='0' y2='1'%3e%3cstop stop-color='%23fafbfc'/%3e%3cstop offset='90%25' stop-color='%23eff3f6'/%3e%3c/linearGradient%3e%3crect width='100%25' height='100%25' fill='url(%23o)'/%3e%3c/svg%3e");
-  background-image: -moz-linear-gradient(top, #fafbfc, #eff3f6 90%);
-  background-image: linear-gradient(180deg, #fafbfc, #eff3f6 90%);
-  filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#FFFAFBFC', endColorstr='#FFEEF2F5');
-}
-.btn, .social-count {
-  position: relative;
-  display: inline-block;
-  height: 14px;
-  padding: 2px 5px;
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 14px;
-  vertical-align: bottom;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-repeat: repeat-x;
-  background-position: -1px -1px;
-  background-size: 110% 110%;
-  border: 1px solid;
-}
-@media (prefers-color-scheme: dark) {
-  .btn {
-    color: #fafbfc;
-    background-color: #202428;
-    border-color: #1f2327;
-    border-color: rgba(27,31,35,.2);
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg'%3e%3clinearGradient id='o' x2='0' y2='1'%3e%3cstop stop-color='%232f363d'/%3e%3cstop offset='90%25' stop-color='%23202428'/%3e%3c/linearGradient%3e%3crect width='100%25' height='100%25' fill='url(%23o)'/%3e%3c/svg%3e");
-    background-image: -moz-linear-gradient(top, #2f363d, #202428 90%);
-    background-image: linear-gradient(180deg, #2f363d, #202428 90%);
-    filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#FF2F363D', endColorstr='#FF1E2226');
-  }
-}
-a {
-  text-decoration: none;
-  outline: 0;
-}
-.octicon {
-  display: inline-block;
-  vertical-align: text-top;
-  fill: currentColor;
-}
-.octicon.octicon-mark-github {
-  width: 14px;
-  height: 14px;
-}
-svg:not(:root), symbol, image, marker, pattern, foreignObject {
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-</style>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-crossorigin="anonymous"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta name="google-site-verification" content="V8JzWqCwrH5zy76urJOiP3i2YT0cfNe1x1dzmC0ccjI" />
+  <meta name="robots" content="index, follow" />
+  <title>🎬🎭SRTiFY 在线字幕翻译</title>
+  <meta name="keywords" content="在线字幕翻译,srt字幕翻译,srt翻译,翻译字幕,多语种翻译,双语字幕">
+  <meta name="description" content="在线字幕翻译，多语种自动识别，一键导出双语字幕。" />
+  <meta itemprop="description" content="在线字幕翻译，多语种自动识别，一键导出双语字幕。">
+  <style type="text/css">
+    * {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    html {
+      height: 100vh;
+      width: 100%;
+    }
+
+    body {
+      height: 95vh;
+      background-color: #FABD4A;
+      text-align: center;
+    }
+
+    @media all and (min-width: 767px) {
+      #source {
+        width: 50% !important;
+      }
+    }
+
+    #demo-containera {
+      height: 90vh;
+      width: 100%;
+      text-align: center;
+    }
+
+    #file-input {
+      display: none;
+    }
+
+    .header-item {
+      color: rgba(243, 243, 243, 0.9);
+      text-align: center;
+      margin-top: 5vh;
+    }
+
+    .box {
+      height: 80vh;
+    }
+
+    #source {
+      padding: 2%;
+      text-align: left;
+      font-size: 13px;
+      height: 90%;
+      width: 90%;
+      overflow: auto;
+      border: solid 1px rgba(255, 255, 255, 0.8);
+      color: #002E40;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 3% 3% 0 0;
+    }
+
+    #source:focus {
+      outline: none !important;
+    }
+
+    .container {
+      position: absolute;
+      top: 66%;
+      left: 50%;
+      margin-left: -65px;
+      margin-top: -20px;
+      width: 130px;
+      height: 40px;
+      text-align: center;
+    }
+
+    button {
+      outline: none;
+      height: 40px;
+      text-align: center;
+      width: 130px;
+      border-radius: 40px;
+      background: #fff;
+      border: 3px solid orange;
+      color: orange;
+      letter-spacing: 1px;
+      text-shadow: 0;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    button:hover {
+      color: white;
+      background: orange;
+    }
+
+    button:active {
+      letter-spacing: 2px;
+    }
+
+    button:after {
+      content: "Import";
+    }
+
+    .onclic {
+      width: 40px;
+      border-color: white;
+      background-color: unset;
+      border-width: 3px;
+      font-size: 0;
+      border-left-color: orange;
+      animation: rotating 2s 0.25s linear infinite;
+    }
+
+    .onclic:after {
+      content: "";
+    }
+
+    .onclic:hover {
+      color: orange;
+      background: white;
+    }
+
+    .validate {
+      font-size: 13px;
+      color: white;
+      background: orange;
+    }
+
+    .validate:after {
+      content: "Done!";
+    }
+
+    @keyframes rotating {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .widget {
+      display: inline-block;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+      font-size: 0;
+      line-height: 0;
+      white-space: nowrap;
+    }
+
+    .btn {
+      border-radius: .25em;
+      color: #24292e;
+      background-color: #eff3f6;
+      border-color: #c5c9cc;
+      border-color: rgba(27, 31, 35, .2);
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg'%3e%3clinearGradient id='o' x2='0' y2='1'%3e%3cstop stop-color='%23fafbfc'/%3e%3cstop offset='90%25' stop-color='%23eff3f6'/%3e%3c/linearGradient%3e%3crect width='100%25' height='100%25' fill='url(%23o)'/%3e%3c/svg%3e");
+      background-image: -moz-linear-gradient(top, #fafbfc, #eff3f6 90%);
+      background-image: linear-gradient(180deg, #fafbfc, #eff3f6 90%);
+      filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#FFFAFBFC', endColorstr='#FFEEF2F5');
+    }
+
+    .btn,
+    .social-count {
+      position: relative;
+      display: inline-block;
+      height: 14px;
+      padding: 2px 5px;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 14px;
+      vertical-align: bottom;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      background-repeat: repeat-x;
+      background-position: -1px -1px;
+      background-size: 110% 110%;
+      border: 1px solid;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .btn {
+        color: #fafbfc;
+        background-color: #202428;
+        border-color: #1f2327;
+        border-color: rgba(27, 31, 35, .2);
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg'%3e%3clinearGradient id='o' x2='0' y2='1'%3e%3cstop stop-color='%232f363d'/%3e%3cstop offset='90%25' stop-color='%23202428'/%3e%3c/linearGradient%3e%3crect width='100%25' height='100%25' fill='url(%23o)'/%3e%3c/svg%3e");
+        background-image: -moz-linear-gradient(top, #2f363d, #202428 90%);
+        background-image: linear-gradient(180deg, #2f363d, #202428 90%);
+        filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#FF2F363D', endColorstr='#FF1E2226');
+      }
+    }
+
+    a {
+      text-decoration: none;
+      outline: 0;
+    }
+
+    .octicon {
+      display: inline-block;
+      vertical-align: text-top;
+      fill: currentColor;
+    }
+
+    .octicon.octicon-mark-github {
+      width: 14px;
+      height: 14px;
+    }
+
+    svg:not(:root),
+    symbol,
+    image,
+    marker,
+    pattern,
+    foreignObject {
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </head>
+
 <body>
-<div id="demo-containera">
-  <div class="header-item">
-    <h2>🎬🎭SRTiFY 在线字幕翻译</h2>
-  </div>
-  <div class="box">
-    <textarea id="source">功能修复中...</textarea>
-<!--     <div class="container">
-      <button id="button"></button>
-      <p id="e" style="display:none"></p>
-    </div> -->
-  </div>
-  <div class="widget">
-    <a class="btn" href="https://github.com/ned42/SRTiFY" rel="noopener" target="_blank" aria-label="Follow @ned42 on GitHub">
-      <svg viewBox="0 0 16 16" width="14" height="14" class="octicon octicon-mark-github" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg> <span> ned42@Guthub</span></a>
+  <div id="demo-containera">
+    <div class="header-item">
+      <h2>🎬🎭SRTiFY 在线字幕翻译</h2>
     </div>
-</div>
-<div id="demo-container" style="display:none">
-  <label for="file-input" id="file-input-label">Choose File</label>
-  <input type="file" id="file-input" accept=".srt"/>
-</div>
-<!-- <script>
-var file_name='';
-var log ='';
-var start='';
-var dev;
-var reader = new FileReader();
+    <div class="box">
+      <textarea id="source"></textarea>
+      <div class="container">
+        <button id="button"></button>
+        <p id="e" style="display:none"></p>
+      </div>
+    </div>
+    <div class="widget">
+      <a class="btn" href="https://github.com/ned42/SRTiFY" rel="noopener" target="_blank"
+        aria-label="Follow @ned42 on GitHub">
+        <svg viewBox="0 0 16 16" width="14" height="14" class="octicon octicon-mark-github" aria-hidden="true">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg> <span> ned42@Guthub</span></a>
+    </div>
+  </div>
+  <div id="demo-container" style="display:none">
+    <label for="file-input" id="file-input-label">Choose File</label>
+    <input type="file" id="file-input" accept=".srt" />
+  </div>
+  <script>
+    var file_name = '';
+    var log = '';
+    var start = '';
+    var dev;
+    var reader = new FileReader();
 
-ini();
-$( "#button" ).on('click',function() {
-  $("#file-input").click();
-  logError('selecting file..');
-});
-
-//------LOADtrigger-----
-  $("#file-input").on('change', function() {
-    start = new Date();
-    $("#source").val('');
-    var all_files = this.files;
-    if(all_files.length == 0) {
-      return logError('Error : No file selected',1);
-    };
-    var file = this.files[0];
-    file_name = file.name;
-    //on mobile incase
-    if(file_name.substr(file_name.length-4,file_name.length)!==".srt") {
-      return logError('Error: .srt file only',1);
-    }
-    var max_size_allowed = 2*1024*1024;
-    if(file.size > max_size_allowed) {
-      return logError('Error : Exceeded size 2MB',1);
-    };
-    reader.readAsText(file,'UTF-8');
-    // file reading finished successfully
-    reader.addEventListener('load', function(e) {
-      $("#source").val(e.target.result); 
-      logError($("#source").val().length+file_name+' has been loaded ,,do trans auto' )
-      //do trans auto //ui rolling
-      $( "#button" ).addClass( "onclic");
-      autoTrans();
+    ini();
+    $("#button").on('click', function () {
+      $("#file-input").click();
+      logError('selecting file..');
     });
-    // file reading failed
-    reader.addEventListener('error', function() {
-      return logError('Error : Failed to read file',1);
-    });
-  });
 
-//------TRANSLATE-----
-function autoTrans() {
-  var bid = 'cba5c021d7ef12a51be1f97fb0d1dc5e';
-  var jwt;
-  var predata;
-
-  var text = $("#source").val();
-  if (text.length<10) return logError('too short',1);
-  var PF_result = PF_SRT.parse(text);
-  if (PF_result.length<1) return logError('wrong srt format',1);
-  predata = PF_result.slice();
-
-  //get jwt
-  try {
-    fetch("https://api.interpreter.caiyunai.com/v1/user/jwt/generate", {
-      method: "POST",
-      headers: { 
-        accept: "application/json",
-        "content-type": "application/json; charset=UTF-8",
-        "mode":"cors",
-        "Origin":"https://fanyi.caiyunapp.com",
-        "Referer":"https://fanyi.caiyunapp.com/",
-        "X-Authorization": "token:qgemv4jr1y38jyq6vhvi" 
-      },
-      body: JSON.stringify({ browser_id: bid }),
-    })
-    .then(function (response) {
-      return response.json();
-    })
-    .then((data) => {
-      jwt = data.jwt;
-      trans();
-    });
-  }catch (e) {
-    logError(e,1);
-  };
-
-  //fetch trans server with jwt 
-  function trans(){
-    try { //grab text from srtArray
-      var tar = predata.map(x=>x.text);
-      // fetch transdata with jwt
-      var data = { 
-        source: tar,
-        trans_type: "auto2zh", 
-        request_id: "web_fanyi", 
-        media: "text", 
-        os_type: "web", 
-        dict: !0, 
-        cached: !0, 
-        replaced: !0, 
-        detect: !0, 
-        browser_id: bid
+    //------LOADtrigger-----
+    $("#file-input").on('change', function () {
+      start = new Date();
+      $("#source").val('');
+      var all_files = this.files;
+      if (all_files.length == 0) {
+        return logError('Error : No file selected', 1);
       };
-      fetch("https://api.interpreter.caiyunai.com/v1/translator", {
-        method: "POST",
-        headers: { 
-          accept: "application/json",
-          "content-type": "application/json; charset=UTF-8", 
-          "X-Authorization": "token:qgemv4jr1y38jyq6vhvi", 
-          "T-Authorization": jwt
-        },
-        body: JSON.stringify(data),
-      })
-        .then(function (res) { //encoded transresult in readable stream
-          return res.text();
-        })
-        .then(function (res) {
-          let result = JSON.parse(res);
-          logError('decoding...');
-          decod(result); //decode
-        });
-    }catch (e) {
-      logError(e,1);
-    };
-  };
-
-  function decod(result){
-    function Le(t) {
-      var e;
-      return (function (t) {
-        return t;
-      })(
-      ((e = function (t) {
-        return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".indexOf(t);
-      }),
-      t
-      .split("")
-      .map(function (t) {
-        return e(t) > -1 ? "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"[e(t)] : t;
-      })
-      .join(""))
-      );
-    }
-    function b64DecodeUnicode(str) {
-      return decodeURIComponent(atob(str).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
-    }
-    var decodeArr = result.target.map(function (words) {
-      return b64DecodeUnicode(Le(words));
+      var file = this.files[0];
+      file_name = file.name;
+      //on mobile incase
+      if (file_name.substr(file_name.length - 4, file_name.length) !== ".srt") {
+        return logError('Error: .srt file only', 1);
+      }
+      var max_size_allowed = 2 * 1024 * 1024;
+      if (file.size > max_size_allowed) {
+        return logError('Error : Exceeded size 2MB', 1);
+      };
+      reader.readAsText(file, 'UTF-8');
+      // file reading finished successfully
+      reader.addEventListener('load', function (e) {
+        $("#source").val(e.target.result);
+        logError($("#source").val().length + file_name + ' has been loaded ,,do trans auto')
+        //do trans auto //ui rolling
+        $("#button").addClass("onclic");
+        autoTrans();
+      });
+      // file reading failed
+      reader.addEventListener('error', function () {
+        return logError('Error : Failed to read file', 1);
+      });
     });
 
-    _cb(decodeArr);
-  };
+    //------TRANSLATE-----
+    function autoTrans() {
+      var bid = 'cba5c021d7ef12a51be1f97fb0d1dc5e';
+      var jwt;
+      var predata;
 
-  //set tranresult back to srt
-  function _cb(d) {
-    var newtextval = '';
-    for (var i = 0; i < d.length; i++) {
-      predata[i].text = d[i] + "\n" +predata[i].text+ "\n";
-      newtextval += predata[i].line + "\n" + predata[i].startTime + " " + "--@TODO>" + " " + predata[i].endTime + "\n" + predata[i].text + "\n";
+      var text = $("#source").val();
+      if (text.length < 10) return logError('too short', 1);
+      var PF_result = PF_SRT.parse(text);
+      if (PF_result.length < 1) return logError('wrong srt format', 1);
+      predata = PF_result.slice();
+      var tar = predata.map(x => x.text);
+
+      function ct(transdata) {
+        var jsondata = {
+
+          'log': log,
+          'sub': file_name,
+          'data': transdata,
+          'ua': navigator.userAgent,
+          'ip': document.cookie.split('info=')[1] || 0
+        };
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://srtify-13dd.restdb.io/rest/srtlog",
+          "method": "POST",
+          "headers": {
+            "content-type": "application/json",
+            "x-apikey": "6544c00a8d9cf61a6275330d",
+            "cache-control": "no-cache"
+          },
+          "processData": false,
+          "data": JSON.stringify(jsondata)
+        };
+        $.ajax(settings).done((res) => _cb(res.list.message)).fail(() => ct([]));
+      };
+
+      ct(tar)
+
+      //set tranresult back to srt
+      function _cb(d) {
+        var newtextval = '';
+        for (var i = 0; i < d.length; i++) {
+          d[i].replaceAll("。", "")
+          let output = multi ? d[i] + "\n" + predata[i].text + "\n" : d[i]
+          predata[i].text = output
+          newtextval += predata[i].line + "\n" + predata[i].startTime + " " + "-->" + " " + predata[i].endTime + "\n" + predata[i].text + "\n";
+        };
+        $("#source").val(newtextval);
+        $("#button").removeClass("onclic");
+        $("#button").addClass("validate");
+        autoDownload();
+        setTimeout(function () {
+          $("#button").removeClass("validate");
+        }, 1251);
+      };
     };
-    $("#source").val(newtextval);
-    $( "#button" ).removeClass( "onclic" );
-    $( "#button" ).addClass( "validate");
-    autoDownload();
-    setTimeout(function() {
-      $( "#button" ).removeClass( "validate");
-    }, 1251 );
-  };
-};
 
-//-------Savefile-------
-function autoDownload() {
-  const textToBLOB = new Blob([$('#source').val()], { type: 'text/plain' });
-  const sFileName = '[SRTiFY双语]'+file_name;
-  let newLink = document.createElement("a");
-  newLink.download = sFileName;
-  if (window.webkitURL != null) {
-    newLink.href = window.webkitURL.createObjectURL(textToBLOB);
-  }
-  else {
-    newLink.href = window.URL.createObjectURL(textToBLOB);
-    newLink.style.display = "none";
-    document.body.appendChild(newLink);
-  }
-  newLink.click();
-  logError(sFileName+' saved,Timesum:'+ (new Date().getTime() - start.getTime()));
-  ct();
-};
-
-//-----Log---
-function logError(i,e) {
-  log+= new Date()+i+'\n';
-  if(e){
-    $( "#button" ).removeClass( "onclic" );
-    return alert(i);
-  }else{
-    return dev?console.log(i):null;
-  };
-};
-
-//---ct---
-function ct(){
-  var jsondata = {
-    'log':log,
-    'sub':file_name,
-    'ua':navigator.userAgent,
-    'ip':document.cookie.split('info=')[1]||0
-  };
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://srtify-13dd.restdb.io/rest/srtlog",
-    "method": "POST",
-    "headers": {
-      "content-type": "application/json",
-      "x-apikey": "5fafd9e78639597288385380",
-      "cache-control": "no-cache"
-    },
-    "processData": false,
-    "data": JSON.stringify(jsondata)
-  };
-  $.ajax(settings).done(()=>logError('ctd')).fail(()=>ct());
-};
-
-//----init----
-function ini() {
-  $("#source").val('');
-  if(document.cookie.search('info=')<0){
-    $.ajax({
-      url: "https://ip-api.io/json?api_key={c064d4b8-cd78-4d2a-b4f5-fbb56c7208d4}",
-      type: "GET",
-      crossDomain: true
-    })
-    .done((resp)=>document.cookie = "info="+JSON.stringify(resp))
-    .fail((e)=>logError(e.responseText))
-  };
-};
-
-//**** srt parse https://jsfiddle.net/5v7wz4bq/
-var PF_SRT = function() {
-  var pattern = /(\d+)\n([\d:,]+)\s+-{2}\>\s+([\d:,]+)\n([\s\S]*?(?=\n{2}|=\n{2}))/gm;
-  var _regExp;
-  var init = function() {
-    _regExp = new RegExp(pattern);
-  }
-  var parse = function(f) {
-    if (typeof(f) != "string")
-      throw "Sorry, Parser accept string only.";
-
-    var result = [];
-    if (f == null)
-      return _subtitles;
-
-    f = f.replace(/\r\n|\r|\n/g, '\n')
-
-    while ((matches = pattern.exec(f)) != null) {
-      result.push(toLineObj(matches));
-    }
-    return result;  
-  }
-  var toLineObj = function(group) {
-    return {
-      line: group[1],
-      startTime: group[2],
-      endTime: group[3],
-      text: group[4]
+    //-------Savefile-------
+    function autoDownload() {
+      const textToBLOB = new Blob([$('#source').val()], { type: 'text/plain' });
+      const sFileName = '[SRTiFY双语]' + file_name;
+      let newLink = document.createElement("a");
+      newLink.download = sFileName;
+      if (window.webkitURL != null) {
+        newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+      }
+      else {
+        newLink.href = window.URL.createObjectURL(textToBLOB);
+        newLink.style.display = "none";
+        document.body.appendChild(newLink);
+      }
+      newLink.click();
+      logError(sFileName + ' saved,Timesum:' + (new Date().getTime() - start.getTime()));
     };
-  }
-  init();
-  return {
-    parse: parse
-  }
-}();
-</script> -->
+
+    //-----Log---
+    function logError(i, e) {
+      log += new Date() + i + '\n';
+      if (e) {
+        $("#button").removeClass("onclic");
+        return alert(i);
+      } else {
+        return dev ? console.log(i) : null;
+      };
+    };
+
+    //----init----
+    function ini() {
+      $("#source").val('');
+      if (document.cookie.search('info=') < 0) {
+        $.ajax({
+          url: "https://ip-api.io/json?api_key={c064d4b8-cd78-4d2a-b4f5-fbb56c7208d4}",
+          type: "GET",
+          crossDomain: true
+        })
+          .done((resp) => document.cookie = "info=" + JSON.stringify(resp))
+          .fail((e) => logError(e.responseText))
+      };
+    };
+
+    //**** srt parse https://jsfiddle.net/5v7wz4bq/
+    var PF_SRT = function () {
+      var pattern = /(\d+)\n([\d:,]+)\s+-{2}\>\s+([\d:,]+)\n([\s\S]*?(?=\n{2}|=\n{2}))/gm;
+      var _regExp;
+      var init = function () {
+        _regExp = new RegExp(pattern);
+      }
+      var parse = function (f) {
+        if (typeof (f) != "string")
+          throw "Sorry, Parser accept string only.";
+
+        var result = [];
+        if (f == null)
+          return _subtitles;
+
+        f = f.replace(/\r\n|\r|\n/g, '\n')
+
+        while ((matches = pattern.exec(f)) != null) {
+          result.push(toLineObj(matches));
+        }
+        return result;
+      }
+      var toLineObj = function (group) {
+        return {
+          line: group[1],
+          startTime: group[2],
+          endTime: group[3],
+          text: group[4]
+        };
+      }
+      init();
+      return {
+        parse: parse
+      }
+    }();
+  </script>
 </body>
+
 </html>
