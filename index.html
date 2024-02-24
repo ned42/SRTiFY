@@ -323,9 +323,7 @@
       function _cb(d) {
         var newtextval = '';
         for (var i = 0; i < d.length; i++) {
-          d[i].replaceAll("。", "")
-          let output = d[i] //multi ? d[i] + "\n" + predata[i].text + "\n" : d[i]
-          predata[i].text = output
+          predata[i].text = d[i].replaceAll("。", "") + "\n" //multi ? d[i] + "\n" + predata[i].text + "\n" : d[i]
           newtextval += predata[i].line + "\n" + predata[i].startTime + " " + "-->" + " " + predata[i].endTime + "\n" + predata[i].text + "\n";
         };
         $("#source").val(newtextval);
