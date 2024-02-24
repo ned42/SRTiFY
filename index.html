@@ -324,7 +324,7 @@
         var newtextval = '';
         for (var i = 0; i < d.length; i++) {
           d[i].replaceAll("。", "")
-          let output = multi ? d[i] + "\n" + predata[i].text + "\n" : d[i]
+          let output = d[i] //multi ? d[i] + "\n" + predata[i].text + "\n" : d[i]
           predata[i].text = output
           newtextval += predata[i].line + "\n" + predata[i].startTime + " " + "-->" + " " + predata[i].endTime + "\n" + predata[i].text + "\n";
         };
@@ -368,7 +368,7 @@
     //-------Savefile-------
     function autoDownload() {
       const textToBLOB = new Blob([$('#source').val()], { type: 'text/plain' });
-      const sFileName = '[SRTiFY双语]' + file_name;
+      const sFileName = '[SRTiFY字幕]' + file_name;
       let newLink = document.createElement("a");
       newLink.download = sFileName;
       if (window.webkitURL != null) {
