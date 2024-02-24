@@ -319,6 +319,24 @@
       predata = PF_result.slice();
       var tar = predata.map(x => x.text);
 
+      //set tranresult back to srt
+      function _cb(d) {
+        var newtextval = '';
+        for (var i = 0; i < d.length; i++) {
+          d[i].replaceAll("。", "")
+          let output = multi ? d[i] + "\n" + predata[i].text + "\n" : d[i]
+          predata[i].text = output
+          newtextval += predata[i].line + "\n" + predata[i].startTime + " " + "-->" + " " + predata[i].endTime + "\n" + predata[i].text + "\n";
+        };
+        $("#source").val(newtextval);
+        $("#button").removeClass("onclic");
+        $("#button").addClass("validate");
+        autoDownload();
+        setTimeout(function () {
+          $("#button").removeClass("validate");
+        }, 1251);
+      };
+
       function ct(transdata) {
         var jsondata = {
 
@@ -345,24 +363,6 @@
       };
 
       ct(tar)
-
-      //set tranresult back to srt
-      function _cb(d) {
-        var newtextval = '';
-        for (var i = 0; i < d.length; i++) {
-          d[i].replaceAll("。", "")
-          let output = multi ? d[i] + "\n" + predata[i].text + "\n" : d[i]
-          predata[i].text = output
-          newtextval += predata[i].line + "\n" + predata[i].startTime + " " + "-->" + " " + predata[i].endTime + "\n" + predata[i].text + "\n";
-        };
-        $("#source").val(newtextval);
-        $("#button").removeClass("onclic");
-        $("#button").addClass("validate");
-        autoDownload();
-        setTimeout(function () {
-          $("#button").removeClass("validate");
-        }, 1251);
-      };
     };
 
     //-------Savefile-------
