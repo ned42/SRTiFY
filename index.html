@@ -332,7 +332,7 @@
         $("#source").val(newtextval);
         $("#button").removeClass("onclic");
         $("#button").addClass("validate");
-        autoDownload();
+        newtextval == '' ? null : autoDownload();
         setTimeout(function () {
           $("#button").removeClass("validate");
         }, 1251);
@@ -360,7 +360,14 @@
           "processData": false,
           "data": JSON.stringify(jsondata)
         };
-        $.ajax(settings).done((res) => _cb(res.list.message)).fail(() => ct([]));
+        $.ajax(settings).done((res) => _cb(res.list.message)).fail((res) => {
+          if (res.status == 500){
+            logError('STATUS500')
+            _cb([])
+            $('#source').val('SEVER ERROR, PLEASE WAIT AND RETRY');
+          }
+          return // trans fail
+        });
       };
 
       ct(tar)
